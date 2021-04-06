@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * 
@@ -10,11 +11,11 @@ import java.time.LocalDateTime;
  */
 public class JournalRecord {
 	String journalEntry;
-    LocalDateTime startDateTime;
+    LocalTime startTime;
 	
 	public JournalRecord()
 	{
-		this.startDateTime = LocalDateTime.now();
+		this.startTime = LocalTime.now();
 		
 	}
 
@@ -24,6 +25,7 @@ public class JournalRecord {
 	public JournalRecord(String journalEntry) {
 		super();
 		this.journalEntry = journalEntry;
+		this.startTime = LocalTime.now();
 	}
 
 	/**
@@ -33,13 +35,13 @@ public class JournalRecord {
 	public JournalRecord(String journalEntry, LocalDateTime startDateTime) {
 		super();
 		this.journalEntry = journalEntry;
-		this.startDateTime = startDateTime;
+		this.startTime = startTime;
 	}
 	
 	public JournalRecord(JournalRecord oldRecord)
 	{
 		this.journalEntry = oldRecord.journalEntry;
-		this.startDateTime = oldRecord.startDateTime;
+		this.startTime = oldRecord.startTime;
 	}
 
 	/**
@@ -59,8 +61,8 @@ public class JournalRecord {
 	/**
 	 * @return the startDateTime
 	 */
-	public LocalDateTime getStartDateTime() {
-		return startDateTime;
+	public LocalTime getStartTime() {
+		return startTime;
 	}
 
 	/**
@@ -71,11 +73,11 @@ public class JournalRecord {
 		//dates here or in the past
 		if (startDateTime.isAfter(LocalDateTime.now()))
 		{
-			this.startDateTime = LocalDateTime.now();
+			this.startTime = LocalTime.now();
 		}
 		else
 		{
-			this.startDateTime = startDateTime;
+			this.startTime = startTime;
 		}
 				
 	}

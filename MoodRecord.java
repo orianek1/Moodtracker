@@ -1,19 +1,20 @@
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 /**
  * 
  *This class stores all the mood records
- *
+ *It tracks the record for the mood for a day. So the date and the mood level
 /**
  * @author Oriane
  *
  */
 public class MoodRecord {
 	int moodFromUser;
-	LocalDateTime startDateTime;
+	LocalTime startTime;
 	
 	public MoodRecord()
 	{
-		this.startDateTime = LocalDateTime.now();
+		this.startTime = LocalTime.now();
 		
 	}
 	
@@ -23,7 +24,7 @@ public class MoodRecord {
 	public MoodRecord(int moodFromUser) {
 		super();
 		this.moodFromUser = moodFromUser;
-		this.startDateTime = LocalDateTime.now();
+		this.startTime = LocalTime.now();
 	}
 
 	/**
@@ -33,13 +34,15 @@ public class MoodRecord {
 	public MoodRecord(int moodFromUser, LocalDateTime startDateTime) {
 		super();
 		this.moodFromUser = moodFromUser;
-		this.startDateTime = startDateTime;
+		this.startTime = startTime;
 	}
 	
+	
+	// Copy of Constructor
 	public MoodRecord(MoodRecord oldRecord)
 	{
 		this.moodFromUser = oldRecord.moodFromUser;
-		this.startDateTime = oldRecord.startDateTime;
+		this.startTime = oldRecord.startTime;
 	}
 	
 
@@ -63,24 +66,30 @@ public class MoodRecord {
 		this.moodFromUser = moodFromUser;
 	}
 
-	public LocalDateTime getStartDateTime() {
-		return startDateTime;
+	public LocalTime getStartTime() {
+		return startTime;
 	}
 
 	public void setStartDateTime(LocalDateTime startDateTime) {
 		//dates here or in the past
 		if (startDateTime.isAfter(LocalDateTime.now()))
 		{
-			this.startDateTime = LocalDateTime.now();
+			this.startTime = LocalTime.now();
 		}
 		else
 		{
-			this.startDateTime = startDateTime;
+			this.startTime = startTime;
 		}
 		
 	}
 	
-	
+	public String toString()
+	{
+		String output = "";
+		output = Integer.toString(moodFromUser) +' ' + startTime.toString();
+		
+		return output;
+	}
 	
 	
 

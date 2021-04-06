@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 /**
  * 
@@ -12,15 +13,14 @@ import java.util.ArrayList;
  */
 public class DayEntry {
 	
-	//private int moodFromUser;
-	
 	private int sleepFromUser;
 	private String journalEntry;
-	
-	ArrayList<MoodRecord> dayMoodRecord;
-	//ArrayList<SleepRecord> daySleepRecord;
+	private int moodFromUser;
+	//ArrayList<MoodRecord> dayRecord;
+	ArrayList<Record> dayRecords;
 	LocalDate dateofMood;
-	
+
+
 
 	/**
 	 * @param moodFromUser
@@ -28,31 +28,32 @@ public class DayEntry {
 	 * @param journalEntry
 	 * @param dateofMood
 	 */
-	public DayEntry(int sleepFromUser, String journalEntry, LocalDate dateofMood) 
+	
+	public DayEntry(int sleepFromUser, String journalEntry, int moodFromUser, LocalDate dateofMood) 
 	{
 		super();
-		//this.moodFromUser = moodFromUser;
+		this.moodFromUser = moodFromUser;
 		this.sleepFromUser = sleepFromUser;
 		this.journalEntry = journalEntry;
 		this.dateofMood = dateofMood;
+		dayRecords = new ArrayList<Record>();
 	}
 
 
 
 	/**
-	 * @param dayRecord
+	 * @param dayRecords
 	 */
-	public DayEntry(ArrayList<MoodRecord> dayMoodRecord) {
+	//public DayEntry(ArrayList<Record> dayRecords) 
+	//{
 		//super();
-		this.dayMoodRecord = new ArrayList <MoodRecord> ();
+		//this.dayRecords = new ArrayList <Record> ();
 		
-		for (MoodRecord wr: dayMoodRecord)
-		{
-			this.dayMoodRecord.add(new MoodRecord (wr));
-		}
-	}
-	
-	
+		//for (Record r: dayRecords)
+		//{
+			//this.dayRecords.add(new Record(r));
+		//}
+	//}
 
 
 	//Copy of constructor
@@ -61,45 +62,35 @@ public class DayEntry {
 	{
 		super();
 		 
+		this.moodFromUser= toCopy.moodFromUser;
 		this.dateofMood = toCopy.dateofMood;
 		this.sleepFromUser = toCopy.sleepFromUser;
 		this.journalEntry = toCopy.journalEntry;
-	    this.dayMoodRecord = new ArrayList<MoodRecord>();
+	    //this.dayRecords = new ArrayList<Record>();
 		
-		for (MoodRecord wr: toCopy.dayMoodRecord)
-		{
-			this.dayMoodRecord.add(new MoodRecord(wr));
-		}
+		//for (Record r: toCopy.dayRecords)
+		//{
+			//this.dayRecords.add(new Record(r));
+		//}
 	}
 	//}
 
-	public void addREcord(MoodRecord session)
-	{
-		dayMoodRecord.add( new MoodRecord (session));
-	}
-	
-	public void addRecord(String journalEntry, int moodFromUser, LocalDateTime startDatetime)
-	{
-		dayRecord.add(new MoodRecord(moodFromUser, startDateTime));
-	}
+	//public void addRecord(MoodRecord session, SleepRecord session )
+	//{
+		//dayRecord.add( (new MoodRecord, (session)), (new SleepRecord (session)));
+	//}
 	
 	
 	
-	//TODO
-	/**
-	 * @return the dayRecord
-	 */
-	public ArrayList<MoodRecord> getDayRecord() 
-	{
-		ArrayList<MoodRecord> recordClone = new ArrayList<MoodRecord>();
-		
-		for (MoodRecord wr: dayMoodRecord)
-		{
-			recordClone.add(new MoodRecord (wr) );
-		}
-			
-		return recordClone;
-	}
+	
+	//public void addRecord(int moodFromUser, LocalDate startDateTime)
+	//{
+		//dayRecord.add(new MoodRecord(moodFromUser, startDateTime));
+	//}
+	
+	
+	
+	
 
 	/**
 	 * @param dayRecord the dayRecord to set
@@ -115,6 +106,12 @@ public class DayEntry {
 	
 
 	
+
+	public DayEntry(LocalDate now) {
+		// TODO Auto-generated constructor stub
+	}
+
+
 
 	/**
 	 * @return the dateofMood
@@ -136,36 +133,42 @@ public class DayEntry {
 	/**
 	 * @return the moodFromUser
 	 */
-	//public int getMoodFromUser() {
-		//return moodFromUser;
-	//}
+	public int getMoodFromUser() {
+		return moodFromUser;
+	}
 
 
 
 	/**
 	 * @param moodFromUser the moodFromUser to set
 	 */
-	//public void setMoodFromUser(int moodFromUser) {
-		//this.moodFromUser = moodFromUser;
-	//}
-
-
-
-	/**
-	 * @return the dayMoodRecord
-	 */
-	public ArrayList<MoodRecord> getDayMoodRecord() {
-		return dayMoodRecord;
+	public void setMoodFromUser(int moodFromUser) {
+		
+	    this.moodFromUser = moodFromUser;
 	}
-
-
+	
+	//TODO
+	/**
+	* @return the dayRecord
+	*/
+	//public ArrayList<MoodRecord> getDayRecord() 
+	//{
+		//ArrayList<MoodRecord> recordClone = new ArrayList<MoodRecord>();
+			
+		//for (MoodRecord wr: dayRecord)
+		//{
+			//recordClone.add(new MoodRecord (wr) );
+		//}
+				
+		//return recordClone;
+		//}
 
 	/**
 	 * @param dayMoodRecord the dayMoodRecord to set
 	 */
-	public void setDayMoodRecord(ArrayList<MoodRecord> dayMoodRecord) {
-		this.dayMoodRecord = dayMoodRecord;
-	}
+	//public void setDayRecord(ArrayList<MoodRecord> dayRecord) {
+		//this.dayRecord = dayRecord;
+	//}
 
 
 
@@ -202,6 +205,38 @@ public class DayEntry {
 	public void setJournalEntry(String journalEntry) {
 		this.journalEntry = journalEntry;
 	}
+
+
+
+	public void addRecord(int moodFromUser2, int sleepFromUser2, String journalEntry2, LocalDateTime startDateTime) {
+		// TODO Auto-generated method stub
+		
+	}
+	public String toString()
+	{
+		String output = "";
+		output.concat(dateofMood.toString() + ": ");
+		
+		if (!dayRecords.isEmpty())
+		{
+			for (Record r: dayRecords)
+			{
+				
+			  output.concat(r.toString());
+			    output.concat(",");
+		   }
+		
+	}
+		return output;
+	}
+
+
+
+	//public void addRecord(int moodFromUser, int sleepFromUser, String journalEntry, LocalDateTime startDateTime) 
+	//{
+		// TODO Auto-generated method stub
+		//dayRecords.add(moodFromUser,sleepFromUser,journalEntry,startDateTime);
+	//}
 	
 	
 	

@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * 
@@ -10,11 +11,11 @@ import java.time.LocalDateTime;
  */
 public class SleepRecord {
 	int sleepFromUser;
-	LocalDateTime startDateTime;
+	LocalTime startTime;
 	
 	public SleepRecord()
 	{
-		this.startDateTime = LocalDateTime.now();
+		this.startTime = LocalTime.now();
 		
 	}
 	
@@ -38,13 +39,13 @@ public class SleepRecord {
 	public SleepRecord(int sleepFromUser, LocalDateTime startDateTime) {
 		super();
 		this.sleepFromUser = sleepFromUser;
-		this.startDateTime = startDateTime;
+		this.startTime = startTime;
 	}
 	
 	public SleepRecord(SleepRecord oldRecord)
 	{
 		this.sleepFromUser = oldRecord.sleepFromUser;
-		this.startDateTime = oldRecord.startDateTime;
+		this.startTime = oldRecord.startTime;
 	}
 
 
@@ -87,8 +88,8 @@ public class SleepRecord {
 	/**
 	 * @return the startDateTime
 	 */
-	public LocalDateTime getStartDateTime() {
-		return startDateTime;
+	public LocalTime getStartTime() {
+		return startTime;
 	}
 
 
@@ -102,11 +103,11 @@ public class SleepRecord {
 		//dates here or in the past
 		if (startDateTime.isAfter(LocalDateTime.now()))
 		{
-			this.startDateTime = LocalDateTime.now();
+			this.startTime = LocalTime.now();
 		}
 		else
 		{
-			this.startDateTime = startDateTime;
+			this.startTime = startTime;
 		}
 		
 		
